@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "js/shopelfen-store.js",
+    "name": "shopelfen-store",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "css/shopelfen-store.css"
+    ]
+  }
+}
