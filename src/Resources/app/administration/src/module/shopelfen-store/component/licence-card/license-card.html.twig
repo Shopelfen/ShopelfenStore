@@ -1,0 +1,80 @@
+<div class="license-card" :class="{ 'installed': isInstalled, 'not-installed': !isInstalled }" v-show="!isHidden">
+    <div class="license-card__preview" :style="image ? { backgroundImage: `url(${image})` } : {}">
+        <!-- Extension type label could be added here if needed -->
+    </div>
+
+    <div class="license-card__info-grid">
+        <div class="license-card__info-name" v-if="title">
+            {{ title }}
+        </div>
+        <div class="license-card__info-description" v-if="manufacturer">
+            {{ manufacturer }}
+        </div>
+
+        <div class="license-card__info-status">
+
+            <span v-if="active">{{ $tc('shopelfen-store.license.renewal', { date: formattedDate }) }}</span>
+            <span v-else>{{  $tc('shopelfen-store.license.renewalExpired', { date: formattedDate }) }}</span>
+        </div>
+
+        <div class="license-card__info-action">
+            <template v-if="isInstalled">
+                <template v-if="loadingActive">
+                    <sw-loader size="64px"></sw-loader>
+                </template>
+                <template>
+                    <sw-switch-field style="margin-top: 0; margin-bottom: 0;" :value="isActive" @update:value="toggleActive"></sw-switch-field>
+                </template>
+
+                <template v-if="isUpdateAvailable">
+                    <mt-button
+                            size="small"
+                            :isLoading="isLoadingUpdate"
+                            variant="primary"
+                            @click.stop="update">
+                        {{ version }} -> {{ updateToVersion }}
+                    </mt-button>
+                </template>
+                <template v-else>
+                    <span v-if="version" class="license-card__version">{{ version }}</span>
+                </template>
+                <mt-button
+                        size="small"
+                        variant="danger"
+                        @click.stop="requestDeletion">
+                    {{ $tc('shopelfen-store.extension.delete') }}
+                </mt-button>
+            </template>
+
+            <template v-else-if="isDownloaded">
+                <template v-if="loadingActive">
+                    <sw-loader size="16px"></sw-loader>
+                </template>
+                <template v-else>
+                    <mt-button
+                            size="small"
+                            variant="primary"
+                            @click.stop="requestInstallation">
+                        {{ $tc('shopelfen-store.extension.install') }}
+                    </mt-button>
+
+                    <mt-button
+                            size="small"
+                            variant="danger"
+                            @click.stop="requestDeletion">
+                        {{ $tc('shopelfen-store.extension.delete') }}
+                    </mt-button>
+                </template>
+            </template>
+
+            <template v-else>
+                <mt-button
+                        size="small"
+                        variant="primary"
+                        @click.stop="requestDownload">
+                    {{ $tc('shopelfen-store.extension.download') }}
+                </mt-button>
+            </template>
+        </div>
+    </div>
+</div>

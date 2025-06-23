@@ -1,0 +1,27 @@
+ <sw-meteor-page>
+        <template #search-bar>
+            <sw-search-bar
+                    initialSearchType="License"
+                    :initialSearch="term"
+                    :placeholder="$tc('shopelfen-store.general.searchBarPlaceholder.license')"
+                    typeSearchAlwaysInContainer
+                    ref="searchBar"
+                    @search="onSearch">
+
+            </sw-search-bar>
+        </template>
+
+        <template #page-tabs>
+            {#
+                <sw-tabs-item :route="{ name: 'shopelfen.store.my-extensions.listing.overview' }">{{ $tc('shopelfen-store.tabs.overview') }}</sw-tabs-item>
+                <sw-tabs-item :route="{ name: 'shopelfen.store.my-extensions.listing.config' }">{{ $tc('shopelfen-store.tabs.config') }}</sw-tabs-item>
+            #}
+
+            <sw-tabs-item :route="{ name: 'shopelfen.store.my-extensions.listing.license' }">{{ $tc('shopelfen-store.tabs.licenses') }}</sw-tabs-item>
+
+        </template>
+
+        <template #default>
+            <router-view></router-view>
+        </template>
+    </sw-meteor-page>

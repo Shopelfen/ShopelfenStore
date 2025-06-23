@@ -1,0 +1,53 @@
+<sw-meteor-page>
+
+    <sw-meteor-card :title="$tc('shopelfen-settings.config.verification-card-title')">
+
+        <div style="display: flex; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; width: 100%">
+                <sw-field-label>{{ $tc('shopelfen-settings.config.customer-number-label') }}</sw-field-label>
+            </div>
+            <div style="display: flex; justify-content: space-between; width: 100%">
+                <sw-field-label>{{ $tc('shopelfen-settings.config.store-number-label') }}</sw-field-label>
+            </div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <sw-text-field style="width: 100%"
+                    :value="customerNumber"
+                    @update:value="saveCustomerNumber">
+            </sw-text-field>
+            <sw-text-field style="width: 100%"
+                    :value="storeNumber"
+                    @update:value="saveStoreNumber">
+            </sw-text-field>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+            <sw-field-label>{{  $tc('shopelfen-settings.config.safety-token-label') }}</sw-field-label>
+        </div>
+        <sw-text-field
+                :value="singleToken"
+                @update:value="saveSingleToken">
+        </sw-text-field>
+
+        <template #footer>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <hx-verification-state></hx-verification-state>
+                </div>
+                <mt-button
+                        :block="false"
+                        :disabled="false"
+                        :ghost="false"
+                        :isLoading="isLoading"
+                        :showBackIcon="false"
+                        :showFrontIcon="false"
+                        size="medium"
+                        :square="false"
+                        variant="primary"
+                        @click="saveConfig">
+                    {{ $tc('shopelfen-settings.config.verification-card-save-button') }}
+                </mt-button>
+            </div>
+        </template>
+    </sw-meteor-card>
+</sw-meteor-page>

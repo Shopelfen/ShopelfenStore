@@ -1,0 +1,50 @@
+{
+    "shopelfen-store": {
+        "general": {
+            "mainMenuItemGeneral": "Shopelfen Store",
+            "descriptionTextModule": "Manage this custom module here",
+            "searchBarPlaceholder": {
+                "license": "Lizenzen durchsuchen",
+                "config": "Konfiguration durchsuchen"
+            }
+        },
+        "tabs": {
+            "config": "Konfiguration",
+            "overview": "Start",
+            "licenses": "Lizenzen"
+        },
+        "license": {
+            "renewal": "Wird am { date } verlängert",
+            "renewalExpired": "Läuft am { date } aus"
+        },
+        "extension": {
+            "download": "Herunterladen",
+            "install": "Installieren",
+            "delete": "Löschen",
+            "activate": {
+                "title": "Erweiterung aktiviert",
+                "description": "Die Aktivierung der Erweiterung {extension} war erfolgreich."
+            },
+            "deactivate": {
+                "title": "Erweiterung deaktiviert",
+                "description": "Die Deaktivierung der Erweiterung {extension} war erfolgreich."
+            },
+            "installation": {
+                "title": "Erweiterung installiert",
+                "description": "Die Installation der Erweiterung {extension} war erfolgreich."
+            },
+            "cacheError": {
+                "title": "Cache Fehler",
+                "description": "Der Cache konnte nicht geleert werden. Bitte leere den Cache manuell."
+            },
+            "uninstall": {
+                "title": "Erweiterung deinstalliert",
+                "description": "Die Deinstallation der Erweiterung {extension} war erfolgreich."
+            },
+            "remove": {
+                "title": "Erweiterung entfernt",
+                "description": "Die Entfernung der Erweiterung {extension} war erfolgreich."
+            }
+        }
+    }
+}

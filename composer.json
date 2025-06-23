@@ -1,0 +1,52 @@
+{
+    "name": "shopelfen-store/shopelfen-store",
+    "description": "shopelfen-store/shopelfen-store",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.1",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "HexaMain GmbH",
+            "email": "contact@shopelfen.de",
+            "homepage": "https://www.shopelefen.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@shopelfen.de",
+        "issues": "https://gitlab.hexasrv.com/hexamain/shopelfen/docs/-/issues",
+        "source": "https://gitlab.hexasrv.com/hexamain/shopelfen/docs"
+    },
+    "require": {
+        "shopware/core": "~6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "ShopelfenStore\\ShopelfenStore",
+        "label": {
+            "de-DE": "Shopelfen Store Plugin",
+            "en-GB": "Shopelfen Store Plugin"
+        },
+        "description": {
+            "de-DE": "Shopelfen Store ist ein alternativer Plugin-Marktplatz, über den Erweiterungen gekauft, gemietet oder kostenlos bezogen werden können – unabhängig und flexibel nutzbar.",
+            "en-GB": "Shopelfen Store is an alternative plugin marketplace that allows extensions to be purchased, rented or downloaded for free – independent and flexibly usable."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.shopelfen.de",
+            "en-GB": "https://www.shopelfen.de"
+        },
+        "supportLink": {
+            "de-DE": "https://www.shopelfen.de/support",
+            "en-GB": "https://www.shopelfen.com/support"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "ShopelfenStore\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ShopelfenStore\\Tests\\": "tests/"
+        }
+    }
+}
