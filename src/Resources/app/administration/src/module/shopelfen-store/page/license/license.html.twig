@@ -1,0 +1,45 @@
+<template>
+    <div class="license-container">
+        <!-- Placeholder während Laden -->
+        <template v-if="isLoading">
+            <sw-skeleton-bar
+                    v-for="n in 5"
+                    :key="n"
+                    variant="card"
+                    style="margin-bottom: 16px; height: 60px"
+            />
+        </template>
+
+        <template v-else>
+
+            <shopelfen-store-license-controls
+            :filterByActive="filterByActive"
+            :selectedSortingOption="selectedSortingOption"
+            @update:filter-active="filter"
+            @update:sorting-option="changeSortingOption">
+
+                <template #refresh>
+                    <sw-button
+                            size="small"
+                            variant="secondary"
+                            @click="loadPlugins">
+                        Refresh
+                    </sw-button>
+                </template>
+            </shopelfen-store-license-controls>
+
+            <license-card
+                    v-for="(plugin, index) in filteredPlugins"
+                    :key="index"
+                    :ref="`licenseCard_${index}`"
+                    :title="plugin.title"
+                    :extensionId="plugin.id"
+                    :active="plugin.active"
+                    :validUntil="plugin.validUntil"
+                    :technicalName="plugin.technicalName"
+                    :manufacturer="plugin.manufacturer"
+                    :image="plugin.image"
+            ></license-card>
+        </template>
+    </div>
+</template>

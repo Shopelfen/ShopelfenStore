@@ -1,0 +1,13 @@
+{
+  "shopelfen-settings" : {
+    "title":"Shopelfen Einstellungen",
+    "description":"Hier können Sie die Shopelfen Einstellungen konfigurieren.",
+    "config" : {
+      "verification-card-title" : "Verifikation",
+      "verification-card-save-button" : "Speichern",
+      "customer-number-label" : "Kundennummer *",
+      "store-number-label" : "Storenummer *",
+      "safety-token-label" : "Sicherheits Token *"
+    }
+  }
+}

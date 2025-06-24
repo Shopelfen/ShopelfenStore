@@ -1,0 +1,16 @@
+<template>
+        <mt-button
+                style="margin-top: 5px;"
+                :block="false"
+                :disabled="false"
+                :ghost="true"
+                :isLoading="isLoading"
+                :showBackIcon="false"
+                :showFrontIcon="false"
+                size="small"
+                :square="false"
+                variant="secondary"
+                @click="verify">
+            {{ verificationText }}
+        </mt-button>
+</template>
