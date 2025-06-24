@@ -5,36 +5,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-
-        <service id="ShopelfenStore\Controller\UpdateReceiverController" public="true" autowire="true" autoconfigure="true">
-            <tag name="controller.service_arguments"/>
-        </service>
-
         <defaults autowire="true" autoconfigure="true" public="false"/>
-
-        <service id="ShopelfenStore\Controller\UpdateRunningController">
-            <tag name="controller.service_arguments"/>
-            <argument key="$fs"                      type="service" id="Symfony\Component\Filesystem\Filesystem"/>
-            <argument key="$kernel"                  type="service" id="kernel"/>
-            <argument key="$pluginManagementService" type="service" id="Shopware\Core\Framework\Plugin\PluginManagementService"/>
-            <argument key="$pluginService"           type="service" id="Shopware\Core\Framework\Plugin\PluginService"/>
-            <argument key="$coreLifecycle"           type="service" id="Shopware\Core\Framework\Plugin\PluginLifecycleService"/>
-            <argument key="$migrationLoader"         type="service" id="Shopware\Core\Framework\Migration\MigrationCollectionLoader"/>
-            <argument key="$pluginRepo"              type="service" id="plugin.repository"/>
-        </service>
-
-        <service id="ShopelfenStore\Controller\ExtensionReceiveController" public="true" autowire="true" autoconfigure="true">
-            <argument key="$pluginManagementService" type="service" id="Shopware\Core\Framework\Plugin\PluginManagementService"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-
-        <service id="ShopelfenStore\Service\LicenseGuard" public="true">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <argument type="service" id="Symfony\Contracts\HttpClient\HttpClientInterface"/>
-        </service>
-
-
+        <prototype namespace="ShopelfenStore\" resource="../../" exclude="../../{DependencyInjection,Resources,Migration,ShopelfenStore.php}" />
     </services>
 </container>

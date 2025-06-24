@@ -36,6 +36,7 @@ class UpdateReceiverController extends AbstractController
         $target = $customTmp . '/' . $file->getClientOriginalName();
         $file->move(dirname($target), basename($target));
 
+        // TODO: Implement logic
         //$type = $this->pluginManagementService->extractPluginZip($target, true);
 
         return new JsonResponse(['type' => 'success', 'status' => 'written', 'target' => $target]);

@@ -17,6 +17,7 @@ use Shopware\Core\Framework\Plugin\PluginLifecycleService;
 use Shopware\Core\Framework\Migration\MigrationCollectionLoader;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Plugin\PluginEntity;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 #[Route(defaults: ['_routeScope' => ['api']])]
@@ -29,7 +30,7 @@ class UpdateRunningController extends AbstractController
         private readonly PluginService             $pluginService,
         private readonly PluginLifecycleService    $coreLifecycle,
         private readonly MigrationCollectionLoader $migrationLoader,
-        #[Autowire('shopware.repository.plugin')]
+        #[Autowire(service: 'plugin.repository')]
         private readonly EntityRepository          $pluginRepo
     ) {}
 
@@ -53,16 +54,18 @@ class UpdateRunningController extends AbstractController
 
         try {
 
-            // 2) Kontext & alte Version lesen
+            // 2) Read context & old version
             $context = Context::createDefaultContext();
             $criteria = (new Criteria())->addFilter(new EqualsFilter('name', $pluginName));
+
+            /** @var PluginEntity $pluginEntity */
             $pluginEntity = $this->pluginRepo->search($criteria, $context)->first();
             if (!$pluginEntity) {
                 throw new \RuntimeException("Plugin-Entity für '$pluginName' nicht gefunden.");
             }
             $oldVersion = $pluginEntity->getVersion();
 
-            // 3) Neue Version aus composer.json
+            // 3) New version from composer.json  
             $composerFile = $targetPath . '/composer.json';
             if (!file_exists($composerFile)) {
                 throw new \RuntimeException("composer.json in '$targetPath' fehlt.");
@@ -70,10 +73,10 @@ class UpdateRunningController extends AbstractController
             $data = json_decode((string) file_get_contents($composerFile), true, JSON_THROW_ON_ERROR);
             $newVersion = $data['version'] ?? throw new \RuntimeException("version fehlt in composer.json.");
 
-            // 4) Migrations für die neue Version sammeln
+            // 4) Collect migrations for the new version
             $migrations = $this->migrationLoader->collectAllForVersion($newVersion);
 
-            // 5) Plugin-Instanz laden & UpdateContext bauen
+            // 5) Load plugin instance & build UpdateContext
             $pluginEntity = $this->pluginService->getPluginByName($pluginName, $context);
             if (!$pluginEntity) {
                 throw new \RuntimeException("Plugin-Instanz für '$pluginName' nicht geladen.");
@@ -84,7 +87,7 @@ class UpdateRunningController extends AbstractController
                 throw new \RuntimeException("Plugin-Bundle '$pluginName' nicht geladen.");
             }
 
-            // 6) Update & Reaktivierung
+            // 6) Update & Reactivation  
             $this->coreLifecycle->updatePlugin($pluginEntity, $context);
             $this->coreLifecycle->activatePlugin($pluginEntity, $context);
 

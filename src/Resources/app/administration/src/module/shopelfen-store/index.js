@@ -22,8 +22,7 @@ Shopware.Module.register('shopelfen-store', {
         'de-DE': deDE,
         'en-GB': enGB
     },
-
-///var/www/html/vendor/shopware/administration/Resources/app/administration
+    
     routes: {
         'my-extensions': {
             path: 'my-extensions',

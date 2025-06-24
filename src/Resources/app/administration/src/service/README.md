@@ -1,15 +1,17 @@
-# Unterscheidung zwischen APP und PLUGIN
+# Difference between APP and PLUGIN
 
-Es gibt mittlerweile zwei Möglichkeiten um eine Erweiterung zu erstellen:
+There are currently two ways to create an extension:
+
 # APP
-Eine APP ist eine Erweiterung, die in der Shopware Cloud betrieben wird. Sie kann über den Shopware Account verwaltet und installiert werden. APPs sind in der Regel für die Nutzung in der Cloud optimiert und bieten eine einfache Möglichkeit, Funktionen zu erweitern.
+
+An APP is an extension that runs in the Shopware Cloud. It can be managed and installed via the Shopware Account. APPs are typically optimized for cloud use and provide an easy way to extend functionality.
 
 # PLUGIN
-Ein PLUGIN ist eine Erweiterung, die lokal auf dem Shopware System installiert wird. Es kann über den Plugin Manager verwaltet und installiert werden. Plugins bieten in der Regel mehr Flexibilität und Kontrolle über die Funktionalität, da sie direkt auf dem Server laufen.
 
-Der Upload des Plugins in unserem Store muss mit den zugehörigen Dateien erfolgen
-sprich ob das Plugin eine composer.json oder eine manifest.xml hat.
+A PLUGIN is an extension installed locally on the Shopware system. It can be managed and installed via the Plugin Manager. Plugins generally offer more flexibility and control over functionality since they run directly on the server.
 
-Dann ist es entweder von Tpy PLUGIN oder von typ APP.
+The plugin upload in our store must include the relevant files—meaning whether the plugin has a composer.json or a manifest.xml.
 
-Dies sollte bei uns im Store mit angelegt werden, beziehungsweise im Backend beim upload ausgelesen werden. Danach sollte sich der Install workflow des Plugins unterscheiden von welchem Typ das ist.
+Then it is either of type PLUGIN or type APP.
+
+This should be set up in our store or read during the backend upload. After that, the installation workflow should differ depending on which type it is.

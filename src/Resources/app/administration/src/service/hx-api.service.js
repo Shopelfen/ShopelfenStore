@@ -11,7 +11,7 @@ export default class HxApiService {
 
     fetchPlugins(storeNumber, key) {
         return this.httpClient.post(
-            `https://my.shopelfen.de/extension-api/fetch-licenses/${storeNumber}`, null,
+            `${this.DEFAULT_URL}/fetch-licenses/${storeNumber}`, null,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export default class HxApiService {
 
     checkPluginUpdatable(storeNumber, key, extensionId, version){
         return this.httpClient.post(
-            `https://my.shopelfen.de/extension-api/extension-updatable/${storeNumber}`,
+            `${this.DEFAULT_URL}/extension-updatable/${storeNumber}`,
             {
                 extensionId: extensionId,
                 currentVersion: version
@@ -43,11 +43,11 @@ export default class HxApiService {
 
     /**
      *
-     * @param pluginName Der technische Name des Plugins, z.B. "ShopelfenPlugin"
-     * @param key Der API-Schlüssel für die Authentifizierung zum Shopelfen-Server
-     * @param authToken Das Shopware Authentifizierungstoken, um die Anfrage zu autorisieren
-     * @param storeNumber Die Store-Nummer aus dem Shopelfen-Backend
-     * @param extensionId Die Extension-ID des Plugins, das installiert werden soll
+     * @param pluginName The technical name of the plugin, e.g. "ShopelfenPlugin"
+     * @param key The API key for authentication to the Shopelfen server
+     * @param authToken The Shopware authentication token to authorize the request  
+     * @param storeNumber The store number from the Shopelfen backend
+     * @param extensionId The extension ID of the plugin to be installed
      * @returns {any}
      */
     installPluginInternally(pluginName, key, authToken, storeNumber, extensionId) {
@@ -112,7 +112,7 @@ export default class HxApiService {
         };
 
         return this.httpClient.post(
-            `https://my.shopelfen.de/extension-api/update-extension/${storeNumber}`,
+            `${this.DEFAULT_URL}/update-extension/${storeNumber}`,
             criteria,
             {
                 headers: { Authorization: `key=${key}` },
@@ -141,6 +141,7 @@ export default class HxApiService {
     }
 
     updatePlugin(pluginName, authToken) {
+        // TODO: Remove Debug Output
         console.log("Updatting: " + pluginName);
         let headers = {
             headers: {
@@ -155,7 +156,6 @@ export default class HxApiService {
         return this.httpClient.post(`/shopelfen/update`, data, headers)
             .then(response => response.data)
             .catch(error => console.error('Fehler beim Hochladen des Plugins:', error));
-        /*return this.httpClient.post( `/_action/extension/update/${type}/${pluginName}`, data, headers).then(response => response.data).catch(error => console.error('Fehler beim Hochladen des Plugins:', error));*/
     }
     checkFolderInstalled(folderName, authToken) {
         let criteria = {
@@ -168,7 +168,6 @@ export default class HxApiService {
             ]
         };
 
-
         let headers = {
             headers: {
                 Authorization: `Bearer ${authToken}`
@@ -180,7 +179,6 @@ export default class HxApiService {
     }
 
     buildFormData(blob, pluginName){
-
         const file = new File([blob], `${pluginName}.zip`, {
             type: 'application/zip',
             lastModified: Date.now()
@@ -192,7 +190,6 @@ export default class HxApiService {
     }
 
     post(url, key) {
-
         let headers = {
             headers: {
                 'Content-Type': 'application/json',
@@ -204,7 +201,6 @@ export default class HxApiService {
     }
 
     get(url, key) {
-
         let headers = {
             headers: {
                 'Content-Type': 'application/json',

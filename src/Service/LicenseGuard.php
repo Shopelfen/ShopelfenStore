@@ -23,9 +23,8 @@ class LicenseGuard
         try {
 
             $localKey = $this->systemConfigService->get('ShopelfenStore.config.myConfigKey');
-            $storeNumber = $this->systemConfigService->get('ShopelfenStore.config.storeNumber', '');
+            $storeNumber = $this->systemConfigService->get('ShopelfenStore.config.storeNumber');
 
-            // Make POST request to license server
             $response = $this->httpClient->request('POST', "https://my.shopelfen.de/extension-api/has-valid-license", [
                 'headers' => [
                     'Content-Type' => 'application/json',
@@ -38,13 +37,12 @@ class LicenseGuard
                 ],
             ]);
 
-            // Get response content as array
             $data = $response->toArray();
 
             // Check if license is valid
             return isset($data['valid']) && $data['valid'] === true;
         } catch (\Exception $e) {
-            // Log error or handle exception
+            // TODO: Log error or handle exception
             return false;
         }
     }

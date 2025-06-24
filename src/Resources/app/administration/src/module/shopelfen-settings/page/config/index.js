@@ -39,7 +39,6 @@ Component.register('shopelfen-settings-index', {
         },
 
         loadConfig() {
-            // z.B. Konfiguration aus SystemConfig laden
             this.systemConfigApiService.getValues('ShopelfenStore.config').then((response) => {
                 console.log(response);
                 this.singleToken = response['ShopelfenStore.config.myConfigKey'] || '';

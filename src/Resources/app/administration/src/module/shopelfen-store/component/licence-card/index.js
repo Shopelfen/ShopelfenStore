@@ -57,7 +57,7 @@ Component.register('license-card', {
         type: {
             type: String,
             required: false,
-            default: 'plugin' // plugin oder app
+            default: 'plugin' // plugin or app
         }
     },
 

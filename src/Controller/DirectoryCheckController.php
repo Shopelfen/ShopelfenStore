@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DirectoryCheckController extends AbstractController {
     #[Route(path: '/api/_action/shopelfen/check-plugin-folder', name: 'api.shopelfen.check_plugin_folder', methods: ['POST'])]
     public function checkFolderPath(#[MapRequestPayload] CheckFolderData $folderData): JsonResponse{
-        // Nur Namen erlauben, keine Pfade
+        // Only allow names, no paths
         $pluginName = basename($folderData->folderName);
 
         $pluginPath = sprintf('%s/../custom/plugins/%s', __DIR__, $pluginName);
